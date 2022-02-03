@@ -43,7 +43,7 @@ class SignIn(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        f = QFont('Product Sans', 14)
+        f = QFont('Open Sans', 14)
         self.setFont(f)
         self.setWindowTitle('Sign In')
         self.setMinimumSize(QSize(640,480))
@@ -64,7 +64,8 @@ class SignIn(QMainWindow):
         cancelButton = ClickableQLabel('< Cancel', lambda: sys.exit(), hlColor = QColor('#FFE30B5C'))
         
         heading = ClickableQLabel('Sign In', lambda: None)
-        heading.setFont(QFont('Product Sans', 40))
+        heading.setFixedSize(180, 100)
+        heading.setFont(QFont('Open Sans', 40))
         
         self.enter = Authenticate(self)
         self.enter.transferObj.connect(self.launchappwindow) #launch mainwindow with cur and db objects

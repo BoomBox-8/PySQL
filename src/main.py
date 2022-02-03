@@ -9,7 +9,7 @@ program files included with this file
 
 It is preferred if the user has the Fira Code Medium font installed,
 as opposed to the default monospace fonts found on most systems
-The Product Sans font is also recommended to be installed'''
+The Open Sans font is also recommended to be installed'''
 
 import signinWindow
 from PyQt5.QtGui import QIcon

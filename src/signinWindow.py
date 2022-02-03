@@ -306,11 +306,10 @@ class Authenticate(ClickableQLabel):
             
             
             
-        except Exception as e: #if it cant connect with the provided details, the details must be wrong
+        except Exception: #if it cant connect with the provided details, the details must be wrong
             self.window.nameEntry.clear()
             self.window.passwordEntry.clear()
             self.window.fail.setVisible(True)
-            print(e)
             
             return None #quit the func
         

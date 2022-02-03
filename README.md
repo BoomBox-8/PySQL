@@ -3,7 +3,7 @@ A GUI-based interface for MySQL using the mysql.connector library for Python
 
 PySQL was developed as an HS project that demanded the usage of Python + the mysql.connector library. It aims provide an interface for MySQL that is sleeker than the traditional CLI, and adds further features to improve and refine the usage and the interfacing with MySQL.
 
-As the old adage goes, 'Don't fix what isn't broken', and such, strive to refine the article in question as opposed to reinventing the wheel
+As the old adage goes, 'Don't fix what isn't broken', and as such, PySQL strives to refine the article in question as opposed to reinventing the wheel
 
 The full list of features are listed further below
 

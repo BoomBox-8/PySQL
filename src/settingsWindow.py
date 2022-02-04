@@ -68,16 +68,16 @@ class SettingsWindow(QMainWindow):
         fontSelector = QFontComboBox()
         fontSelector.setFontFilters(QFontComboBox.MonospacedFonts)
         fontSelector.setCurrentFont(textEdit.font()) #setting initial value
-        fontSelector.currentFontChanged.connect(lambda font: textEdit.setFontFamily(font.family()))
-        fontSelector.currentFontChanged.connect(lambda font: console.setFontFamily(font.family()))
+        fontSelector.currentFontChanged.connect(lambda font: self.changeFont(textEdit, textEdit.font().pointSize(), font.family()))
+        fontSelector.currentFontChanged.connect(lambda font: self.changeFont(console, console.font().pointSize(), font.family()))
 
         fontSizeConsole = QSpinBox()
         fontSizeConsole.setValue(console.font().pointSize()) #setting initial value
-        fontSizeConsole.valueChanged.connect(lambda size: self.changeFont(console, size))
+        fontSizeConsole.valueChanged.connect(lambda size: self.changeFont(console, size, console.font().family()))
 
         fontSizeEntry = QSpinBox()
         fontSizeEntry.setValue(textEdit.font().pointSize())
-        fontSizeEntry.valueChanged.connect(lambda size: self.changeFont(textEdit, size))
+        fontSizeEntry.valueChanged.connect(lambda size: self.changeFont(textEdit, size, textEdit.font().family()))
 
         macroOneEdit = QLineEdit()
         macroOneEdit.setPlaceholderText(window.macroOne)
@@ -113,10 +113,12 @@ class SettingsWindow(QMainWindow):
 
 
     @staticmethod
-    def changeFont(obj,size) -> None:
+    def changeFont(obj, size, family) -> None:
         fontObj = obj.font()
+        fontObj.setFamily(family)
         fontObj.setPointSize(size)
         obj.setFont(fontObj)
+
 
 
     def changeTheme(self, index, panel, window) -> None:
@@ -126,4 +128,3 @@ class SettingsWindow(QMainWindow):
         panel.setPalette(panelPalette)
         window.statusBar().showMessage(f'Last Operation: Theme Changed to {self.themesComboBox.currentText()}')
    
-

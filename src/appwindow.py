@@ -2,9 +2,10 @@
 The file contains the various widgets users will use to interface with PySQL'''
 
 import mysql.connector
-from tableDraw import tableDraw
 import settingsWindow
 import themes
+from tableDraw import tableDraw
+from os import path
 from PyQt5.QtCore import Qt, QSize, pyqtSignal
 from PyQt5.QtGui import QFont, QPalette, QColor, QIcon, QKeySequence, QTextCursor
 from PyQt5.QtWidgets import (
@@ -85,19 +86,19 @@ class EditingWindow(QMainWindow):
         stretcher = QWidget() #cheap way to separate buttons
         stretcher.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-        self.aboutMeAction = QAction(QIcon(r'assets\aboutme.png'), 'About Me' , self)
+        self.aboutMeAction = QAction(QIcon(f'{path.dirname(__file__)}/assets/aboutme.png'), 'About Me' , self)
         self.aboutMeAction.triggered.connect(self.launchAboutMe)
 
-        self.helpAction = QAction(QIcon(r'assets/help.png'), 'Help', self)
+        self.helpAction = QAction(QIcon(f'{path.dirname(__file__)}/assets/help.png'), 'Help', self)
         self.helpAction.triggered.connect(self.launchHelp)
 
-        self.exitAction = QAction(QIcon(r'assets\quitIcon.png'), 'Quit', self)
+        self.exitAction = QAction(QIcon(f'{path.dirname(__file__)}/assets/quitIcon.png'), 'Quit', self)
         self.exitAction.triggered.connect(qApp.quit)
         self.exitShortcut = QShortcut(QKeySequence(Qt.CTRL + Qt.Key_Q), self)
         self.exitShortcut.activated.connect(lambda: self.exitAction.triggered.emit())
         self.exitShortcut.setContext(Qt.ApplicationShortcut)
 
-        self.settingsAction = QAction(QIcon(r'assets\settingsicon.png'), 'Settings', self)
+        self.settingsAction = QAction(QIcon(f'{path.dirname(__file__)}/assets/settingsicon.png'), 'Settings', self)
         self.settingsAction.triggered.connect(self.launchSettings)
         self.settingsShortcut = QShortcut(QKeySequence(Qt.CTRL + Qt.Key_S), self)
         self.settingsShortcut.activated.connect(lambda: self.settingsAction.triggered.emit(True))
@@ -223,7 +224,7 @@ class EditingWindow(QMainWindow):
         -------
         None'''
 
-        message = f'Contact me for any further queries [https://github.com/BoomBox-8](here)'
+        message = f'Contact me for any further queries [here](https://github.com/BoomBox-8)'
         self.aboutMe = QMessageBox(QMessageBox.Information, 'About Me', message, QMessageBox.Ok)
         self.aboutMe.setTextFormat(Qt.MarkdownText) #I don't want to use HTML syntax for hyperlinks
         self.aboutMe.exec()

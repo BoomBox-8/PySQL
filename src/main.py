@@ -12,9 +12,9 @@ as opposed to the default monospace fonts found on most systems
 The Open Sans font is also recommended to be installed'''
 
 import signinWindow
+from os import path
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication
-
 
 def main():
     '''Instantiates QApplication and runs the event loop
@@ -27,7 +27,7 @@ def main():
     None'''
 
     app = QApplication([])
-    app.setWindowIcon(QIcon(r'assets\logoBlack.ico'))
+    app.setWindowIcon(QIcon(f'{path.dirname(path.abspath(__file__))}/assets/logoblack.ico'))
     app.setStyle("fusion")
     signIn = signinWindow.SignIn()
 

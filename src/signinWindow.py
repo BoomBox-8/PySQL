@@ -3,21 +3,20 @@ Contains the initial sign-in screen. Successfully logging in results
 in connecting to said database, which is passed over to the appWindow
 constructor to be used to execute MySQL queries'''
 
-import sys
 import mysql.connector
-from sqlalchemy import func
 import appwindow
+from os import path
 from PyQt5.QtCore import Qt, QSize, pyqtSignal
 from PyQt5.QtGui import QFont, QPalette, QColor, QPixmap, QBrush
 from PyQt5.QtWidgets import (
 
+    qApp,
     QLabel,
     QLineEdit,
     QMainWindow,
     QVBoxLayout,
     QWidget,
     QGridLayout,
-    QSizePolicy
 )
 
 
@@ -48,7 +47,7 @@ class SignIn(QMainWindow):
         self.setWindowTitle('Sign In')
         self.setMinimumSize(QSize(640,480))
         
-        self.bg = QPixmap(r'assets\signinbg.png')
+        self.bg = QPixmap(f'{path.dirname(path.abspath(__file__))}/assets/signinbg.png')
         self.pallete = self.palette()
         self.brush = QBrush()
         self.brush.setTexture(self.bg)
@@ -61,7 +60,7 @@ class SignIn(QMainWindow):
         namePassLayout = QVBoxLayout() #contains name & pass entry
         
         
-        cancelButton = ClickableQLabel('< Cancel', lambda: sys.exit(), hlColor = QColor('#FFE30B5C'))
+        cancelButton = ClickableQLabel('< Cancel', lambda: qApp.exit(), hlColor = QColor('#FFE30B5C'))
         
         heading = ClickableQLabel('Sign In', lambda: None)
         heading.setFixedSize(180, 100)
@@ -74,7 +73,7 @@ class SignIn(QMainWindow):
         name = QLabel()
         name.setScaledContents(True)
         name.setFixedSize(QSize(128,128))
-        name.setPixmap(QPixmap(r'assets\alternativeLogo.png'))
+        name.setPixmap(QPixmap(f'{path.dirname(__file__)}/assets/alternativeLogo.png'))
  
         #fit logo within the label
         

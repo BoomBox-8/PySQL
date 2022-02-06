@@ -58,8 +58,8 @@ class SettingsWindow(QMainWindow):
     def __init__(self, window, textEdit, console, panel):
         super().__init__(window)
 
-        
-        self.paletteList = [themes.cottonCandy, themes.mango, themes.raspberry, themes.lime,  themes.ocean] #cotton candy rasperbyy/lime monochrome ocean
+        self.paletteDict = themes.themesDict
+
         self.setWindowTitle('Settings')
         self.container = QWidget()
         self.layout = QFormLayout()
@@ -80,20 +80,20 @@ class SettingsWindow(QMainWindow):
         fontSizeEntry.valueChanged.connect(lambda size: self.changeFont(textEdit, size, textEdit.font().family()))
 
         macroOneEdit = QLineEdit()
-        macroOneEdit.setPlaceholderText(window.macroOne)
+        macroOneEdit.setText(window.macroOne)
         macroOneEdit.returnPressed.connect(lambda: setattr(window,'macroOne', macroOneEdit.text()))
 
         macroTwoEdit = QLineEdit()
-        macroTwoEdit.setPlaceholderText(window.macroTwo)
+        macroTwoEdit.setText(window.macroTwo)
         macroTwoEdit.returnPressed.connect(lambda: setattr(window,'macroTwo', macroTwoEdit.text()))
 
         macroThreeEdit = QLineEdit()
-        macroThreeEdit.setPlaceholderText(window.macroThree)
+        macroThreeEdit.setText(window.macroThree)
         macroThreeEdit.returnPressed.connect(lambda: setattr(window,'macroThree', macroThreeEdit.text()))
 
         self.themesComboBox = QComboBox()
-        self.themesComboBox.addItems(['Cotton Candy', 'Mango Twist', 'Raspberry', 'QT Lime Pie', 'Ocean'])
-        self.themesComboBox.activated.connect(lambda index: self.changeTheme(index, panel, window))
+        self.themesComboBox.addItems([i for i in self.paletteDict])
+        self.themesComboBox.textActivated.connect(lambda theme: self.changeTheme(theme, panel, window))
 
         for i in (fontSelector, fontSizeConsole, fontSizeEntry,
                 macroOneEdit,macroTwoEdit, macroThreeEdit, self.themesComboBox):
@@ -121,10 +121,10 @@ class SettingsWindow(QMainWindow):
 
 
 
-    def changeTheme(self, index, panel, window) -> None:
-        qApp.setPalette(self.paletteList[index])
+    def changeTheme(self, theme, panel, window) -> None:
+        qApp.setPalette(self.paletteDict[theme])
         panelPalette = panel.palette
-        panelPalette.setColor(QPalette.Button, self.paletteList[index].base().color())
+        panelPalette.setColor(QPalette.Button, self.paletteDict[theme].base().color())
         panel.setPalette(panelPalette)
         window.statusBar().showMessage(f'Last Operation: Theme Changed to {self.themesComboBox.currentText()}')
    

@@ -33,8 +33,9 @@ def createPalette(palette, base, window, text, button):
     palette.setColor(QPalette.Window, QColor(window))
     palette.setColor(QPalette.Text, QColor(text))
     palette.setColor(QPalette.Button, QColor(button))
-    palette.setColor(QPalette.WindowText, palette.text().color())
-    palette.setColor(QPalette.Highlight, palette.text().color())
+    palette.setColor(QPalette.WindowText, QColor(text))
+    palette.setColor(QPalette.Highlight, QColor(text))
+    palette.setColor(QPalette.ButtonText, QColor(text))
 
     return palette
 
@@ -44,4 +45,17 @@ mango = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFFFC800','#FFFFFF
 raspberry = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFE30B5C','#FFFFFFFF')
 lime = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFBFFF00','#FFFFFFFF')
 ocean = createPalette(QPalette(), '#FF090922', '#FF0E0F38', '#FF25B497', '#FFFFFFFF')
+ube = createPalette(QPalette(), '#FF2A273F', '#FF3E3A5D', '#FFBCB4F6', '#FFBCB4F6')
 
+
+themesDict = {
+    'Cotton Candy' : cottonCandy, 'Mango Twist' : mango, 'Raspberry' : raspberry, 
+    'QT Lime Pie' : lime, 'Ocean' : ocean, 'Ube' : ube
+    }
+
+#To add a new theme, set up a new pallete object,
+#and add a key-value pair of the form themeName-paletteObj to themesDict
+
+#window = 
+#wconsole/textedit : 
+#text : 

@@ -27,6 +27,12 @@ PySQL brings forth several sweeping changes that attempt to improve the QOL side
  - **Operation Tracker**: The last performed operation is tracked with the help of the application window's status bar
  - **Command History**: Past queries can be flipped through with ease, using the Up/Down arrow keys, similar to MySQL's CLI
 
+
+## Gallery 
+
+![A picture of the application, showing off the Ube theme](src/assets/gallery/appWindow.png)
+A picture of the application, showing off the Ube theme
+
 ## FAQ
 
 Q1. I just booted up the program and logged in. What do I do?
@@ -46,7 +52,7 @@ A. Launching the help dialog box located within Tools in the menu bar will provi
  - **Ctrl + S**: Launch Settings
  - **Ctrl + Q**: Quit
  - **Alt + T**: Open Menu Bar
- 
+
  Q3. Will PySQL see active development in the future?
  
  A. It is highly probable that I will never work on this project further, in the near future. It was mainly developed as a HS project, and owing to a super tight schedule in the coming months, I don't see myself working on this any further

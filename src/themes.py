@@ -45,14 +45,13 @@ raspberry = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFE30B5C','#FF
 lime = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFBFFF00','#FFFFFFFF')
 ocean = createPalette(QPalette(), '#FF090922', '#FF0E0F38', '#FF25B497', '#FFFFFFFF')
 ube = createPalette(QPalette(), '#FF2A273F', '#FF3E3A5D', '#FFBCB4F6', '#FFBCB4F6')
-cat = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFFFFFFF', '#FFFFFFFF')
-cat.setBrush(QPalette.Base, QBrush(QImage('space2.png')))
+
 
 
 
 themesDict = {
     'Cotton Candy' : cottonCandy, 'Mango Twist' : mango, 'Raspberry' : raspberry, 
-    'QT Lime Pie' : lime, 'Ocean' : ocean, 'Ube' : ube, 'cat' : cat
+    'QT Lime Pie' : lime, 'Ocean' : ocean, 'Ube' : ube
     }
 
 #To add a new theme, set up a new pallete object,

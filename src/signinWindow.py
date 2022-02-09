@@ -47,7 +47,7 @@ class SignIn(QMainWindow):
         self.setWindowTitle('Sign In')
         self.setMinimumSize(QSize(640,480))
         
-        self.bg = QPixmap(f'{path.dirname(path.abspath(__file__))}/assets/signinbg.png')
+        self.bg = QPixmap(f'{path.dirname(path.abspath(__file__))}/assets/icons/signinbg.png')
         self.pallete = self.palette()
         self.brush = QBrush()
         self.brush.setTexture(self.bg)
@@ -73,7 +73,7 @@ class SignIn(QMainWindow):
         name = QLabel()
         name.setScaledContents(True)
         name.setFixedSize(QSize(128,128))
-        name.setPixmap(QPixmap(f'{path.dirname(__file__)}/assets/alternativeLogo.png'))
+        name.setPixmap(QPixmap(f'{path.dirname(path.abspath(__file__))}/assets/icons/alternativeLogo.png'))
  
         #fit logo within the label
         

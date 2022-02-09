@@ -27,7 +27,7 @@ def main():
     None'''
 
     app = QApplication([])
-    app.setWindowIcon(QIcon(f'{path.dirname(path.abspath(__file__))}/assets/logoblack.ico'))
+    app.setWindowIcon(QIcon(f'{path.dirname(path.abspath(__file__))}/assets/icons/logoblack.ico'))
     app.setStyle("fusion")
     signIn = signinWindow.SignIn()
 

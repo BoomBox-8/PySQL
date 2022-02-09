@@ -86,19 +86,19 @@ class EditingWindow(QMainWindow):
         stretcher = QWidget() #cheap way to separate buttons
         stretcher.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-        self.aboutMeAction = QAction(QIcon(f'{path.dirname(__file__)}/assets/aboutme.png'), 'About Me' , self)
+        self.aboutMeAction = QAction(QIcon(f'{path.dirname(path.abspath(__file__))}/assets/icons/aboutme.png'), 'About Me' , self)
         self.aboutMeAction.triggered.connect(self.launchAboutMe)
 
-        self.helpAction = QAction(QIcon(f'{path.dirname(__file__)}/assets/help.png'), 'Help', self)
+        self.helpAction = QAction(QIcon(f'{path.dirname(path.abspath(__file__))}/assets/icons/help.png'), 'Help', self)
         self.helpAction.triggered.connect(self.launchHelp)
 
-        self.exitAction = QAction(QIcon(f'{path.dirname(__file__)}/assets/quitIcon.png'), 'Quit', self)
+        self.exitAction = QAction(QIcon(f'{path.dirname(path.abspath(__file__))}/assets/icons/quitIcon.png'), 'Quit', self)
         self.exitAction.triggered.connect(qApp.quit)
         self.exitShortcut = QShortcut(QKeySequence(Qt.CTRL + Qt.Key_Q), self)
         self.exitShortcut.activated.connect(lambda: self.exitAction.triggered.emit())
         self.exitShortcut.setContext(Qt.ApplicationShortcut)
 
-        self.settingsAction = QAction(QIcon(f'{path.dirname(__file__)}/assets/settingsicon.png'), 'Settings', self)
+        self.settingsAction = QAction(QIcon(f'{path.dirname(path.abspath(__file__))}/assets/icons/settingsicon.png'), 'Settings', self)
         self.settingsAction.triggered.connect(self.launchSettings)
         self.settingsShortcut = QShortcut(QKeySequence(Qt.CTRL + Qt.Key_S), self)
         self.settingsShortcut.activated.connect(lambda: self.settingsAction.triggered.emit(True))
@@ -460,9 +460,10 @@ class EntryField(QTextEdit):
             self.setText(self.queryArray[self.curIndex % len(self.queryArray)])
 
         elif e.key() == Qt.Key_Return:
-            cleanedText = self.toPlainText().rstrip()
-            if cleanedText[-1] == ';':
-                self.wordParse(cleanedText.upper())
+            cleanedText = self.toPlainText().strip()
+            if len(cleanedText) > 0:
+                if cleanedText[-1] == ';':
+                    self.wordParse(cleanedText.upper())
             
         
 
@@ -489,6 +490,7 @@ class EntryField(QTextEdit):
         self.parseText.emit(text)
         self.queryArray.append(text)
         self.curIndex = 0
+        print(self.queryArray)
         self.clear()
 
 

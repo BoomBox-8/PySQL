@@ -124,7 +124,7 @@ class SettingsWindow(QMainWindow):
     def changeTheme(self, theme, panel, window) -> None:
         qApp.setPalette(self.paletteDict[theme])
         panelPalette = panel.palette
-        panelPalette.setColor(QPalette.Button, self.paletteDict[theme].base().color())
+        panelPalette.setBrush(QPalette.Button, self.paletteDict[theme].base())
         panel.setPalette(panelPalette)
         window.statusBar().showMessage(f'Last Operation: Theme Changed to {self.themesComboBox.currentText()}')
    

@@ -3,6 +3,7 @@ Contains the initial sign-in screen. Successfully logging in results
 in connecting to said database, which is passed over to the appWindow
 constructor to be used to execute MySQL queries'''
 
+from enum import auto
 import mysql.connector
 import appwindow
 from os import path
@@ -14,6 +15,7 @@ from PyQt5.QtWidgets import (
     QLabel,
     QLineEdit,
     QMainWindow,
+    QHBoxLayout,
     QVBoxLayout,
     QWidget,
     QGridLayout,
@@ -63,7 +65,7 @@ class SignIn(QMainWindow):
         cancelButton = ClickableQLabel('< Cancel', lambda: qApp.exit(), hlColor = QColor('#FFE30B5C'))
         
         heading = ClickableQLabel('Sign In', lambda: None)
-        heading.setFixedSize(180, 100)
+        heading.setFixedSize(260, 100)
         heading.setFont(QFont('Open Sans', 40))
         
         self.enter = Authenticate(self)
@@ -78,7 +80,7 @@ class SignIn(QMainWindow):
         #fit logo within the label
         
         self.fail = ClickableQLabel('Details not correct, please enter again', lambda: None, textColor = QColor('#FFFF0000'), hlColor = QColor('#FFFF0000') )
-        self.fail.setFixedSize(QSize(320,30))
+        self.fail.setFixedSize(QSize(360,30))
         self.fail.setVisible(False) #should only become visible post the entry of wrong details
         
         self.nameEntry = QLineEdit()
@@ -92,17 +94,24 @@ class SignIn(QMainWindow):
         self.passwordEntry.setEchoMode(QLineEdit.Password)
         self.passwordEntry.keyPressEvent = self.keyPressWrapper(self.passwordEntry)
         self.setProperties(self.passwordEntry)
-        
+
+        self.autoFill = ClickableQLabel('Auto-Fill Credentials', pressFunc = lambda: extractCredentials(self),  hlColor = QColor('#FFE30B5C'))
+        self.autoFill.setFixedSize(QSize(320,100))
+        self.autoFill.setVisible(path.exists(f'{path.dirname(path.abspath(__file__))}/credentials.txt'))
+
+
         namePassLayout.addWidget(heading)
         namePassLayout.addWidget(self.nameEntry)
         namePassLayout.addWidget(self.passwordEntry)
         namePassLayout.addWidget(self.enter)
+        namePassLayout.addWidget(self.autoFill)
         namePassLayout.addWidget(self.fail)
         
         namePassLayout.setAlignment(self.nameEntry, Qt.AlignHCenter)
         namePassLayout.setAlignment(self.passwordEntry, Qt.AlignHCenter)
         namePassLayout.setAlignment(heading, Qt.AlignHCenter)
         namePassLayout.setAlignment(self.enter, Qt.AlignHCenter)
+        namePassLayout.setAlignment(self.autoFill, Qt.AlignHCenter)
         namePassLayout.setAlignment(self.fail, Qt.AlignHCenter)
         
         
@@ -206,6 +215,7 @@ class ClickableQLabel(QLabel):
         self.pressFunc = pressFunc
         self.setMouseTracking(True) #The mouse is tracked even when it is not held down
         self.setFixedSize(QSize(160,60))
+        self.setAlignment(Qt.AlignHCenter)
         
         
     def mousePressEvent(self, e) -> None:
@@ -281,12 +291,14 @@ class Authenticate(ClickableQLabel):
     
     
     def __init__(self, window):
-        super().__init__('Authenticate', lambda: None, hlColor = QColor('#FFE30B5C'))
+        super().__init__('Authenticate', self.authenticate, hlColor = QColor('#FFE30B5C'))
+        self.setFixedSize(QSize(300,60))
         self.window = window
         
    
     def authenticate(self):
-        '''Passes the entered name and password, and validates them
+        '''Passes the entered name and password
+        (or reads from a credentials file if available), and validates them
         A failure causes the function to return, a success passes
         the db and cur objects in a tuple
         
@@ -296,11 +308,10 @@ class Authenticate(ClickableQLabel):
         Returns
         -------
         None'''
-    
+        
         try:
             
-            
-            myDb = mysql.connector.connect(host = 'localhost', user = self.window.nameEntry.text(), password = self.window.passwordEntry.text(), )
+            myDb = mysql.connector.connect(host = 'localhost', user = self.window.nameEntry.text(), password = self.window.passwordEntry.text())
             myCur = myDb.cursor()
             
             
@@ -311,14 +322,30 @@ class Authenticate(ClickableQLabel):
             self.window.fail.setVisible(True)
             
             return None #quit the func
-        
-        
+
+
+        if not path.exists(f'{path.dirname(path.abspath(__file__))}/credentials.txt'):
+            with open(f'{path.dirname(path.abspath(__file__))}/credentials.txt', 'w+') as credentials:
+                credentials.write(f'name = {self.window.nameEntry.text()}{chr(10)}password = {self.window.passwordEntry.text()}') #set credentials to file
         self.transferObj.emit((myDb, myCur))
             
     
-    def mousePressEvent(self, e):
-        '''Overrides mousePressEvent
-        Attempts to authenticate details upon being clicked'''
+def extractCredentials(window):
+    '''Extracts user credentials from a text file
+    Extracts user credentials from a text file. If no file is
+    available, create file upon the next successful login
+    
+    Parameters
+    ----------
+    window : SignIn
+        Used to access values of text entry fields in window
+        
+    Returns
+    -------
+    None'''
 
-        e.accept()
-        self.authenticate()
+    with open(f'{path.dirname(path.abspath(__file__))}/credentials.txt', 'r') as credentials:
+        window.nameEntry.setText(credentials.readline().split(' = ')[1][:-1]) #newline gets included, must W I P E 
+        window.passwordEntry.setText(credentials.readline().split(' = ')[1])
+            
+    

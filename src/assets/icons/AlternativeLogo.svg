@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="311mm"
+   height="297mm"
+   viewBox="0 0 311 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="AlternativeLogo.svg">
+  <defs
+     id="defs2">
+    <rect
+       x="29.482143"
+       y="73.327377"
+       width="108.85714"
+       height="101.29762"
+       id="rect841" />
+    <rect
+       x="9.8273811"
+       y="105.07738"
+       width="212.42262"
+       height="76.351189"
+       id="rect835" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="-95.753192"
+     inkscape:cy="616.89269"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       id="text833"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect835);fill:#000000;fill-opacity:1;stroke:none;" />
+    <text
+       xml:space="preserve"
+       id="text839"
+       style="font-style:normal;font-weight:normal;font-size:50.8px;line-height:1.25;font-family:sans-serif;letter-spacing:-3.29671px;white-space:pre;shape-inside:url(#rect841);fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1;"
+       transform="matrix(1.6086769,0,0,1.6086769,40.906335,-20.362236)"><tspan
+         x="29.482422"
+         y="120.31812"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.8px;font-family:Bfont;-inkscape-font-specification:Bfont;fill:#ffffff;fill-opacity:1;stroke:none;stroke-opacity:1">S    L</tspan></tspan></text>
+    <path
+       style="fill:#346f9d;fill-opacity:1;stroke:none;stroke-width:0.783426;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path845"
+       sodipodi:type="arc"
+       sodipodi:cx="158.61069"
+       sodipodi:cy="147.34061"
+       sodipodi:rx="30.806156"
+       sodipodi:ry="30.806156"
+       sodipodi:start="1.5707963"
+       sodipodi:end="0.46717632"
+       sodipodi:arc-type="slice"
+       d="m 158.61069,178.14676 a 30.806156,30.806156 0 0 1 -29.64104,-22.41401 30.806156,30.806156 0 0 1 13.49154,-34.62596 30.806156,30.806156 0 0 1 36.99172,3.54855 30.806156,30.806156 0 0 1 6.66285,36.55934 l -27.50507,-13.87407 z" />
+    <path
+       style="fill:#fdd851;fill-opacity:1;stroke:none;stroke-width:0.783426;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path847"
+       sodipodi:type="arc"
+       sodipodi:cx="208.42218"
+       sodipodi:cy="-77.11087"
+       sodipodi:rx="30.120783"
+       sodipodi:ry="30.120783"
+       sodipodi:start="5.631044"
+       sodipodi:end="0.46717577"
+       sodipodi:arc-type="slice"
+       d="m 232.36176,-95.390863 a 30.120783,30.120783 0 0 1 2.95357,31.845384 L 208.42218,-77.11087 Z"
+       transform="rotate(63.625907)" />
+  </g>
+</svg>

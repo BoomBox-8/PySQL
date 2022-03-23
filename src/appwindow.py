@@ -422,7 +422,7 @@ class EntryField(QTextEdit):
         super().__init__()
         self.setFont(QFont('Fira Code Medium', 16))
         self.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
-        self.sizeHint = lambda: QSize(600,60)
+        self.sizeHint = lambda: QSize(800,60)
         self.palette = QPalette()
         self.setPalette(self.palette)
 

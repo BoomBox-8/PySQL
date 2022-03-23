@@ -14,6 +14,10 @@ The full list of features are listed further below
 
 PySQL requires nothing other than the Python STL, the mysql.connector library and PyQT5 to run. It is highly recommended the user installs the [Fira Code Medium](https://github.com/tonsky/FiraCode) and the [Open Sans](https://fonts.google.com/specimen/Open+Sans) font, as several widgets in the program have been built around said fonts
 
+# Usage
+Run main.py, and log-in with the credentials you'd used when installing MySQL. Post that, type queries as you would in MySQL
+
+
 ## Features
 
 PySQL brings forth several sweeping changes that attempt to improve the QOL side of things, so to speak. Features include:

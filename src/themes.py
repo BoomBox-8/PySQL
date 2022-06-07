@@ -39,19 +39,22 @@ def createPalette(palette, base, window, text, button):
     return palette
 
 
-cottonCandy  = createPalette(QPalette(), '#FF131425','#FF1B1D36','#FFFCA6D1','#FFFCA6D1')
-mango = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFFFC800','#FFFFFFFF')
 raspberry = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFE30B5C','#FFFFFFFF')
+mango = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFFFC800','#FFFFFFFF')
 lime = createPalette(QPalette(), '#FF1E1E1E', '#FF313131', '#FFBFFF00','#FFFFFFFF')
+cottonCandy  = createPalette(QPalette(), '#FF131425','#FF1B1D36','#FFFCA6D1','#FFFCA6D1')
+outOfPlaceBanana = createPalette(QPalette(), '#FF1B293A', '#FF2F455D', '#FFE7E39E', '#FFE7E39E')
 ocean = createPalette(QPalette(), '#FF090922', '#FF0E0F38', '#FF25B497', '#FFFFFFFF')
 ube = createPalette(QPalette(), '#FF2A273F', '#FF3E3A5D', '#FFBCB4F6', '#FFBCB4F6')
-
-
+nightDash = createPalette(QPalette(), '#FF15213B', '#FF2B3655', '#FFFCA311', '#FFFCA311')
+Darkness = createPalette(QPalette(), '#FF000000', '#FF000000', '#FF000000', '#FF000000') # :)
 
 
 themesDict = {
-    'Cotton Candy' : cottonCandy, 'Mango Twist' : mango, 'Raspberry' : raspberry, 
-    'QT Lime Pie' : lime, 'Ocean' : ocean, 'Ube' : ube
+     'Raspberry' : raspberry, 'Mango Twist' : mango,
+    'QT Lime Pie' : lime,'Cotton Candy' : cottonCandy,
+    'Out-Of-Place Banana' : outOfPlaceBanana,'Ocean' : ocean,
+    'Ube' : ube, 'Night Dash' : nightDash, 'Darkness' : Darkness
     }
 
 #To add a new theme, set up a new pallete object,

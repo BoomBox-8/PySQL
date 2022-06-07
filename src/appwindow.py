@@ -1,7 +1,9 @@
 '''appWindow
 The file contains the various widgets users will use to interface with PySQL'''
 
+import json
 import mysql.connector
+import random
 import settingsWindow
 import themes
 from tableDraw import tableDraw
@@ -73,10 +75,16 @@ class EditingWindow(QMainWindow):
         self.setWindowTitle('PySQL')
         self.quickPoll = [] #will contain commands that can be queried at once
         self.sqlComp = sqlComp #passes in the required components to work with mysql
-        
-        
-       
-        qApp.setPalette(themes.raspberry)
+        qApp.setPalette(themes.themesDict['Raspberry']) #Set default palette
+
+        self.statusBar().showMessage(random.choice([
+            "If there's a MySQL, where's MyPRQL?",
+            'Sniffing out a database...', 'The F in SQL stands for Fun!',
+            "I've heard the Darkness theme is cool! See for yourself :)",
+            'What nut does a Python programmer love? The Pystachio!',
+            'Chopping up the tables...', 'Spicing the records...',
+            'Work with a fancy theme! Themework is dreamwork!']), msecs = 5000) #le quirky messages
+
         self.panel = QToolBar(self)
         self.panel.palette = QPalette()
         self.panel.setAutoFillBackground(True)
@@ -175,7 +183,8 @@ class EditingWindow(QMainWindow):
         self.tools.addSeparator()
         self.tools.addAction(self.helpAction)
     
-
+        if path.exists(f'{path.dirname(path.abspath(__file__))}/assets/config/settings.json'):
+            self.settingsSetup() 
     
 
     def closeEvent(self,e) -> None:
@@ -344,6 +353,31 @@ class EditingWindow(QMainWindow):
         self.quickPoll.append(text.rstrip().upper())
         self.entryField.clear()
         self.statusBar().showMessage('Last Operation: SQL Query Polled')
+    
+
+    def settingsSetup(self):
+        with open(f'{path.dirname(path.abspath(__file__))}/assets/config/settings.json', 'r') as settings:
+            settingsDict = json.load(settings)
+
+            fontObj = QFont()
+            fontObj.setFamily(settingsDict['Font'])
+            fontObj.setPointSize(settingsDict['Font Size (Console)'])
+
+            self.console.setFont(fontObj)
+
+            fontObj.setFamily(settingsDict['Font'])
+            fontObj.setPointSize(settingsDict['Font Size (Entry Field)'])
+
+            self.entryField.setFont(fontObj) #For an odd reason, editing widget font properties causes conflicts with that of font families and sizes
+
+            self.macroOne = settingsDict['Macro One']
+            self.macroTwo = settingsDict['Macro Two']
+            self.macroThree = settingsDict['Macro Three']
+            
+            qApp.setPalette(themes.themesDict[settingsDict['Theme']])
+            panelPalette = self.panel.palette
+            panelPalette.setBrush(QPalette.Button, themes.themesDict[settingsDict['Theme']].base())
+            self.panel.setPalette(panelPalette)
 
 
 

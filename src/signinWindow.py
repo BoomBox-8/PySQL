@@ -3,7 +3,7 @@ Contains the initial sign-in screen. Successfully logging in results
 in connecting to said database, which is passed over to the appWindow
 constructor to be used to execute MySQL queries'''
 
-from enum import auto
+import json
 import mysql.connector
 import appwindow
 from os import path
@@ -97,7 +97,7 @@ class SignIn(QMainWindow):
 
         self.autoFill = ClickableQLabel('Auto-Fill Credentials', pressFunc = lambda: extractCredentials(self),  hlColor = QColor('#FFE30B5C'))
         self.autoFill.setFixedSize(QSize(320,100))
-        self.autoFill.setVisible(path.exists(f'{path.dirname(path.abspath(__file__))}/credentials.txt'))
+        self.autoFill.setVisible(path.exists(f'{path.dirname(path.abspath(__file__))}/assets/config/credentials.json'))
 
 
         namePassLayout.addWidget(heading)
@@ -139,7 +139,7 @@ class SignIn(QMainWindow):
         
         Returns:
         None'''
-
+        
         self.appwindow = appwindow.EditingWindow(content)
         self.appwindow.show()
         self.close()
@@ -324,16 +324,17 @@ class Authenticate(ClickableQLabel):
             return None #quit the func
 
 
-        if not path.exists(f'{path.dirname(path.abspath(__file__))}/credentials.txt'):
-            with open(f'{path.dirname(path.abspath(__file__))}/credentials.txt', 'w+') as credentials:
-                credentials.write(f'name = {self.window.nameEntry.text()}{chr(10)}password = {self.window.passwordEntry.text()}') #set credentials to file
+        if not path.exists(f'{path.dirname(path.abspath(__file__))}/assets/config/credentials.json'):
+            with open(f'{path.dirname(path.abspath(__file__))}/assets/config/credentials.json', 'w+') as credentials:
+                json.dump({'name' : self.window.nameEntry.text(), 'password' : self.window.passwordEntry.text()} , credentials) #set credentials to file
+
         self.transferObj.emit((myDb, myCur))
             
     
 def extractCredentials(window):
     '''Extracts user credentials from a text file
     Extracts user credentials from a text file. If no file is
-    available, create file upon the next successful login
+    available, a file would be created by authenticate() upon login
     
     Parameters
     ----------
@@ -344,8 +345,9 @@ def extractCredentials(window):
     -------
     None'''
 
-    with open(f'{path.dirname(path.abspath(__file__))}/credentials.txt', 'r') as credentials:
-        window.nameEntry.setText(credentials.readline().split(' = ')[1][:-1]) #newline gets included, must W I P E 
-        window.passwordEntry.setText(credentials.readline().split(' = ')[1])
+    with open(f'{path.dirname(path.abspath(__file__))}/assets/config/credentials.json', 'r') as credentials:
+        credentialsDict = json.load(credentials)
+        window.nameEntry.setText(credentialsDict['name']) 
+        window.passwordEntry.setText(credentialsDict['password'])
             
     

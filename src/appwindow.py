@@ -488,10 +488,12 @@ class EntryField(QTextEdit):
         elif e.key() == Qt.Key_Up: #command history feature
             self.curIndex -= 1
             self.setText(self.queryArray[self.curIndex % len(self.queryArray)])
+            self.moveCursor(QTextCursor.End)
 
         elif e.key() == Qt.Key_Down: 
             self.curIndex += 1
             self.setText(self.queryArray[self.curIndex % len(self.queryArray)])
+            self.moveCursor(QTextCursor.End)
 
         elif e.key() == Qt.Key_Return:
             cleanedText = self.toPlainText().strip()
@@ -524,7 +526,6 @@ class EntryField(QTextEdit):
         self.parseText.emit(text)
         self.queryArray.append(text)
         self.curIndex = 0
-        print(self.queryArray)
         self.clear()
 
 
